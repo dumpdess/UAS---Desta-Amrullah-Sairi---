@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN"
+    "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+    name="laporan_peminjaman" pageWidth="1000" pageHeight="842" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="550e8400-e29b-41d4-a716-446655440000">
+
+    <queryString>
+        <![CDATA[SELECT * FROM peminjaman]]>
+    </queryString>
+
+    <field name="kode_buku" class="java.lang.String"/>
+    <field name="judul_buku" class="java.lang.String"/>
+    <field name="nama_peminjam" class="java.lang.String"/>
+    <field name="jenis_peminjam" class="java.lang.String"/>
+    <field name="genre_buku" class="java.lang.String"/>
+    <field name="lama_pinjam" class="java.lang.Integer"/>
+    <field name="tanggal_pinjam" class="java.sql.Date"/>
+    <field name="sudah_kembali" class="java.lang.Boolean"/>
+    <field name="catatan" class="java.lang.String"/>
+    <field name="path_file" class="java.lang.String"/>
+
+    <title>
+        <band height="50">
+            <staticText>
+                <reportElement x="0" y="0" width="960" height="30"/>
+                <textElement textAlignment="Center">
+                    <font size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Laporan Peminjaman Buku]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="20">
+            <staticText>
+                <reportElement x="0" y="0" width="70" height="20"/>
+                <text><![CDATA[Kode Buku]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="70" y="0" width="120" height="20"/>
+                <text><![CDATA[Judul Buku]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="190" y="0" width="120" height="20"/>
+                <text><![CDATA[Nama Peminjam]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="310" y="0" width="100" height="20"/>
+                <text><![CDATA[Jenis Peminjam]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="410" y="0" width="100" height="20"/>
+                <text><![CDATA[Genre Buku]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="510" y="0" width="60" height="20"/>
+                <text><![CDATA[Hari]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="570" y="0" width="100" height="20"/>
+                <text><![CDATA[Tgl Pinjam]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="670" y="0" width="60" height="20"/>
+                <text><![CDATA[Kembali]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="730" y="0" width="110" height="20"/>
+                <text><![CDATA[Catatan]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="840" y="0" width="120" height="20"/>
+                <text><![CDATA[File]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="70" height="20"/>
+                <textFieldExpression><![CDATA[$F{kode_buku}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="70" y="0" width="120" height="20"/>
+                <textFieldExpression><![CDATA[$F{judul_buku}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="190" y="0" width="120" height="20"/>
+                <textFieldExpression><![CDATA[$F{nama_peminjam}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="310" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{jenis_peminjam}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="410" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{genre_buku}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="510" y="0" width="60" height="20"/>
+                <textFieldExpression><![CDATA[$F{lama_pinjam}]]></textFieldExpression>
+            </textField>
+            <textField pattern="dd/MM/yyyy">
+                <reportElement x="570" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{tanggal_pinjam}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="670" y="0" width="60" height="20"/>
+                <textFieldExpression><![CDATA[$F{sudah_kembali}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="730" y="0" width="110" height="20"/>
+                <textFieldExpression><![CDATA[$F{catatan}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="840" y="0" width="120" height="20"/>
+                <!-- hanya nama file -->
+                <textFieldExpression><![CDATA[$F{path_file}.substring($F{path_file}.lastIndexOf("/") + 1)]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+</jasperReport>
